@@ -1,0 +1,54 @@
+{
+    "name": "angular-toggle-counterpart",
+    "displayName": "Angular Toggle Counterpart Files",
+    "description": "Toggle counterpart files on Angular",
+    "version": "0.0.1",
+    "publisher": "yanutetsu",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:typescript",
+        "onLanguage:html"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.toggleCounterpart",
+                "title": "Angular: Toggle Counterpart Files"
+            },
+            {
+                "command": "extension.toggleCounterpartTesting",
+                "title": "Angular: Toggle Counterpart Files of Testing"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.toggleCounterpart",
+                "key": "ctrl+c c"
+            },
+            {
+                "command": "extension.toggleCounterpartTesting",
+                "key": "ctrl+c ctrl+c"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
