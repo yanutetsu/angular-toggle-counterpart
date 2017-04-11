@@ -13,7 +13,7 @@ Easily toggle countarpart files (.ts|.spec.ts|.html) in angular.
 
 ## Release Notes
 
-### 0.0.1
+### 0.1.0
 
 Initial release
 
