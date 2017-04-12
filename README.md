@@ -13,7 +13,7 @@ Easily toggle counterpart files (.ts|.spec.ts|.html) in angular.
 
 ## Release Notes
 
-### 0.1.1
+### 0.1.2
 
 fix README
 
