@@ -49,8 +49,39 @@ export function activate(context: vscode.ExtensionContext) {
             });
     })
 
+    let disposableToggleCounterpartOfThree = vscode.commands.registerCommand('extension.toggleCounterpartThreeFiles', () => {
+        const filePath: string = vscode.window.activeTextEditor.document.fileName;
+
+        if (!isAngularFile(filePath)) {
+            return;
+        }
+
+        const path: PathStr = splitByExtension(filePath);
+
+        let counterpart: string;
+        if (path.ext === 'html') {
+            counterpart = path.base + '.ts';
+        } else if (path.ext === 'ts') {
+            const extendPath: PathStr = splitByExtension(path.base);
+
+            if (extendPath.ext === 'spec') {
+                counterpart = extendPath.base + '.html';
+            } else {
+                counterpart = path.base + '.spec.ts';
+            }
+        } else {
+            return;
+        }
+
+        vscode.workspace.openTextDocument(counterpart)
+            .then((document: vscode.TextDocument) => {
+                vscode.window.showTextDocument(document);
+            });
+    })
+
     context.subscriptions.push(disposableToggleCounterpart);
     context.subscriptions.push(disposableToggleCounterpartOfTesting);
+    context.subscriptions.push(disposableToggleCounterpartOfThree);
 }
 
 function isAngularFile(filepath: string): boolean {
