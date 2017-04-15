@@ -2,7 +2,7 @@
     "name": "angular-toggle-counterpart",
     "displayName": "Angular Toggle Counterpart Files",
     "description": "Toggle counterpart files on Angular",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "publisher": "yanutetsu",
     "engines": {
         "vscode": "^1.5.0"
@@ -20,15 +20,15 @@
         "commands": [
             {
                 "command": "extension.toggleCounterpart",
-                "title": "Angular: Toggle Counterpart Files"
+                "title": "AngularToggleCounterpart: Toggle ts and html"
             },
             {
                 "command": "extension.toggleCounterpartTesting",
-                "title": "Angular: Toggle Counterpart Files of Testing"
+                "title": "AngularToggleCounterpart: Toggle ts and spec.ts"
             },
             {
                 "command": "extension.toggleCounterpartThreeFiles",
-                "title": "Angular: Toggle Counterpart Files of Three"
+                "title": "AngularToggleCounterpart: Toggle ts, spec.ts and html"
             },
             {
                 "command": "extension.toggleCounterpartRandom",

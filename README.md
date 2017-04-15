@@ -17,6 +17,10 @@ Easily toggle counterpart files (.ts|.spec.ts|.html) in angular.
 
 ## Release Notes
 
+### 0.3.1
+
+fix command names
+
 ### 0.3.0
 
 add new command that toggle four counterpart files at random.
