@@ -3,8 +3,6 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-    console.log('Congratulations, your extension "angular-toggle-counterpart" is now active!');
-
     let disposableToggleCounterpart = vscode.commands.registerCommand('extension.toggleCounterpart', () => {
         const filePath: string = vscode.window.activeTextEditor.document.fileName;
 
