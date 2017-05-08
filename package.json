@@ -2,7 +2,7 @@
     "name": "angular-toggle-counterpart",
     "displayName": "Angular Toggle Counterpart Files",
     "description": "Toggle counterpart files on Angular",
-    "version": "0.3.2",
+    "version": "0.4.0",
     "publisher": "yanutetsu",
     "engines": {
         "vscode": "^1.5.0"
@@ -33,6 +33,10 @@
             {
                 "command": "extension.toggleCounterpartRandom",
                 "title": "ATCR"
+            },
+            {
+                "command": "extension.toggleCounterpartModule",
+                "title": "AngularToggleCounterpart: Toggle *.module.ts and *-routing.module.ts"
             }
         ],
         "keybindings": [
@@ -43,6 +47,10 @@
             {
                 "command": "extension.toggleCounterpartTesting",
                 "key": "ctrl+c ctrl+c"
+            },
+            {
+                "command": "extension.toggleCounterpartModule",
+                "key": "ctrl+c m"
             }
         ]
     },

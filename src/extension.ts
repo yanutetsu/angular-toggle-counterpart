@@ -30,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (!isAngularFile(filePath)) {
             return;
         }
-        
+
         const path: PathStr = splitByExtension(filePath);
 
         if (path.ext !== 'ts') {
@@ -104,18 +104,54 @@ export function activate(context: vscode.ExtensionContext) {
             });
     });
 
+    let disposableToggleCounterpartOfModule = vscode.commands.registerCommand('extension.toggleCounterpartModule', () => {
+        const filePath: string = vscode.window.activeTextEditor.document.fileName;
+
+        if (!isAngularFile(filePath)) {
+            return;
+        }
+
+        const dirfile: DirFile = splitDirAndFile(filePath);
+
+        const path1: PathStr = splitByExtension(dirfile.file);
+
+        if (path1.ext !== 'ts') {
+            return;
+        }
+
+        const path2: PathStr = splitByExtension(path1.base);
+
+        if (path2.ext !== 'module') {
+            return;
+        }
+
+        const routingStr: string = '-routing';
+        const routingStrPosition: number = path2.base.indexOf(routingStr);
+        const counterpart: string = dirfile.dir + [
+                0 < routingStrPosition ? path2.base.substring(0, routingStrPosition) : path2.base + routingStr,
+                path2.ext,
+                path1.ext
+            ].join('.');
+
+        vscode.workspace.openTextDocument(counterpart)
+            .then((document: vscode.TextDocument) => {
+                vscode.window.showTextDocument(document);
+            });
+    })
 
     context.subscriptions.push(disposableToggleCounterpart);
     context.subscriptions.push(disposableToggleCounterpartOfTesting);
     context.subscriptions.push(disposableToggleCounterpartOfThree);
     context.subscriptions.push(disposableToggleCounterpartRandom);
+    context.subscriptions.push(disposableToggleCounterpartOfModule);
 }
 
 function isAngularFile(filepath: string): boolean {
     return isAngularFileType(filepath, 'component')
         || isAngularFileType(filepath, 'service')
         || isAngularFileType(filepath, 'directive')
-        || isAngularFileType(filepath, 'pipe');
+        || isAngularFileType(filepath, 'pipe')
+        || isAngularFileType(filepath, 'module');
 }
 
 function isAngularFileType(filepath: string, type: string): boolean {
@@ -135,6 +171,19 @@ function splitByExtension(filepath: string): PathStr {
 interface PathStr {
     base: string;
     ext: string;
+}
+
+function splitDirAndFile(filepath: string): DirFile {
+    const slash: number = filepath.lastIndexOf('/') + 1;
+    return <DirFile>{
+        dir: filepath.substring(0, slash),
+        file: filepath.substring(slash)
+    }
+}
+
+interface DirFile {
+    dir: string;
+    file: string;
 }
 
 // this method is called when your extension is deactivated
