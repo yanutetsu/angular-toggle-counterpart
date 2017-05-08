@@ -14,6 +14,9 @@ Easily toggle counterpart files (.ts|.spec.ts|.html) in angular.
   - open `.ts` if you are opening `.html`.
   - open `.spec.ts` if you are opening `.ts`.
   - open `.html` if you are opening `.spec.ts`.
+- `ctrl+c m`
+  - open `*.module.ts` if you are opening `*-routing.module.ts`.
+  - open `*-routing.module.ts` if you are opening `*.module.ts`.
 
 ## Release Notes
 
