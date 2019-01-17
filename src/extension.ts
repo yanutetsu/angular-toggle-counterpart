@@ -24,6 +24,27 @@ export function activate(context: vscode.ExtensionContext) {
             });
     });
 
+    let disposableToggleCounterpartOfSCSS = vscode.commands.registerCommand('extension.toggleCounterpartSCSS', () => {
+        const filePath: string = vscode.window.activeTextEditor.document.fileName;
+
+        if (!isAngularFile(filePath)) {
+            return;
+        }
+
+        const path: PathStr = splitByExtension(filePath);
+
+        if (!(path.ext === 'scss' || path.ext === 'html')) {
+            return;
+        }
+
+        const counterpart: string = path.base + (path.ext === 'scss' ? '.html' : '.scss');
+
+        vscode.workspace.openTextDocument(counterpart)
+            .then((document: vscode.TextDocument) => {
+                vscode.window.showTextDocument(document);
+            });
+    })
+
     let disposableToggleCounterpartOfTesting = vscode.commands.registerCommand('extension.toggleCounterpartTesting', () => {
         const filePath: string = vscode.window.activeTextEditor.document.fileName;
 
@@ -128,10 +149,10 @@ export function activate(context: vscode.ExtensionContext) {
         const routingStr: string = '-routing';
         const routingStrPosition: number = path2.base.indexOf(routingStr);
         const counterpart: string = dirfile.dir + [
-                0 < routingStrPosition ? path2.base.substring(0, routingStrPosition) : path2.base + routingStr,
-                path2.ext,
-                path1.ext
-            ].join('.');
+            0 < routingStrPosition ? path2.base.substring(0, routingStrPosition) : path2.base + routingStr,
+            path2.ext,
+            path1.ext
+        ].join('.');
 
         vscode.workspace.openTextDocument(counterpart)
             .then((document: vscode.TextDocument) => {
@@ -140,6 +161,7 @@ export function activate(context: vscode.ExtensionContext) {
     })
 
     context.subscriptions.push(disposableToggleCounterpart);
+    context.subscriptions.push(disposableToggleCounterpartOfSCSS);
     context.subscriptions.push(disposableToggleCounterpartOfTesting);
     context.subscriptions.push(disposableToggleCounterpartOfThree);
     context.subscriptions.push(disposableToggleCounterpartRandom);

@@ -2,19 +2,19 @@
     "name": "angular-toggle-counterpart",
     "displayName": "Angular Toggle Counterpart Files",
     "description": "Toggle counterpart files on Angular",
-    "version": "0.4.3",
+    "version": "0.5.0",
     "publisher": "yanutetsu",
     "engines": {
         "vscode": "^1.5.0"
     },
     "categories": [
-        "Languages",
-        "Other"
+        "Programming Languages",
+        "Keymaps"
     ],
-    "icon": "images/icon.png",
     "activationEvents": [
         "onLanguage:typescript",
-        "onLanguage:html"
+        "onLanguage:html",
+        "onLanguage:scss"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -22,6 +22,10 @@
             {
                 "command": "extension.toggleCounterpart",
                 "title": "AngularToggleCounterpart: Toggle ts and html"
+            },
+            {
+                "command": "extension.toggleCounterpartSCSS",
+                "title": "AngularToggleCounterPart: Toogle scss and html"
             },
             {
                 "command": "extension.toggleCounterpartTesting",
@@ -32,7 +36,7 @@
                 "title": "AngularToggleCounterpart: Toggle ts, spec.ts and html"
             },
             {
-                "command": "extension.toggleCounterpartRandom",
+                "command": "extension.qtoggleCounterpartRandom",
                 "title": "ATCR"
             },
             {
@@ -46,6 +50,10 @@
                 "key": "ctrl+c c"
             },
             {
+                "command": "extension.toggleCounterpartSCSS",
+                "key": "ctrl+c s"
+            },
+            {
                 "command": "extension.toggleCounterpartTesting",
                 "key": "ctrl+c ctrl+c"
             },
@@ -53,7 +61,17 @@
                 "command": "extension.toggleCounterpartModule",
                 "key": "ctrl+c m"
             }
-        ]
+        ],
+        "menus": {
+            "editor/title/context": [
+                {
+                    "when": "resourceLangId == scss || resourceLangId == html",
+                    "command": "extension.toggleCounterpartSCSS",
+                    "alt": "extension.toggleCounterpartSCSS",
+                    "group": "navigation"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

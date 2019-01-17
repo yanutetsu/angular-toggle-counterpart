@@ -7,6 +7,9 @@ Easily toggle counterpart files (.ts|.spec.ts|.html) in angular.
 - `ctrl+c c`
   - open `.html` if you are opening `.ts`.
   - open `.ts` if you are opening `.html`.
+- `ctrl+c s`
+  - open `.html` if you are opening `.scss`.
+  - open `.scss` if you are opening `.html`.
 - `ctrl+c ctrl+c` (for testing)
   - open `.spec.ts` if you are opening `.ts`.
   - open `.ts` if you are opening `.spec.ts`.
@@ -19,6 +22,10 @@ Easily toggle counterpart files (.ts|.spec.ts|.html) in angular.
   - open `*-routing.module.ts` if you are opening `*.module.ts`.
 
 ## Release Notes
+
+### 0.5.0
+
+add new command that toggle scss couterpart files.
 
 ### 0.4.0
 
